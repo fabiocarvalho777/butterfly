@@ -1,0 +1,16 @@
+plugins {
+    id 'org.springframework.boot' version '2.1.5.RELEASE'
+    id 'java'
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+dependencies {
+    compile project(':butterfly-rest-api')
+    compile project(':butterfly-api')
+    runtime project(':butterfly-core')
+    compile lib.jaxrs,
+            lib.spring_starter_jersey
+    runtime lib.spring_starter_validation,
+            lib.spring_starter_actuator
+}

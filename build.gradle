@@ -232,6 +232,11 @@ ext.lib = [
         spring_boot_autoconfigure: "org.springframework.boot:spring-boot-autoconfigure:1.4.0.RELEASE",
         spring_test: "org.springframework:spring-test:4.3.2.RELEASE",
 
+        // Spring Boot starters
+        spring_starter_jersey: "org.springframework.boot:spring-boot-starter-jersey",
+        spring_starter_validation: "org.springframework.boot:spring-boot-starter-validation",
+        spring_starter_actuator: "org.springframework.boot:spring-boot-starter-actuator",
+
         // Maven
         maven_model: "org.apache.maven:maven-model:3.5.4",
         maven_invoker: "org.apache.maven.shared:maven-invoker:3.0.1",

@@ -1,12 +1,11 @@
 package com.paypal.butterfly.core;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
-
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.InputStream;
+import java.util.Properties;
 
 /**
  * This class obtains Butterfly properties via its
@@ -65,9 +64,7 @@ class ButterflyProperties {
     }
 
     static {
-        InputStream fileInputStream = null;
-        try {
-            fileInputStream = ButterflyProperties.class.getClassLoader().getResourceAsStream("butterfly.properties");
+        try (InputStream fileInputStream = ButterflyProperties.class.getClassLoader().getResourceAsStream("butterfly.properties")) {
             properties = new Properties();
             if (fileInputStream != null) {
                 properties.load(fileInputStream);
@@ -76,14 +73,6 @@ class ButterflyProperties {
             }
         } catch (Exception e) {
             logger.error("An exception happened when obtaining Butterfly version", e);
-        } finally {
-            if (fileInputStream != null) {
-                try {
-                    fileInputStream.close();
-                } catch (IOException e) {
-                    logger.error("Exception thrown when obtaining Butterfly version", e);
-                }
-            }
         }
     }
 
