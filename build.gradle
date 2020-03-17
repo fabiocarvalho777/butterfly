@@ -15,7 +15,7 @@ allprojects {
 
     repositories {
         mavenLocal()
-        mavenCentral()
+        maven {url 'https://paypalcentral.es.paypalcorp.com/nexus/content/groups/public/'}
     }
 
     buildScan {
@@ -54,6 +54,8 @@ subprojects {
     ext {
         ossrhUsername = System.getenv('SONATYPE_USER')
         ossrhPassword = System.getenv('SONATYPE_PASSWORD')
+        paypalCentralUser = System.getenv('PAYPAL_CENTRAL_USER')
+        paypalCentralPassword = System.getenv('PAYPAL_CENTRAL_PASSWORD')
     }
 
     jar {
@@ -105,12 +107,12 @@ subprojects {
                         beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
                     }
 
-                    repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-                        authentication(userName: ossrhUsername, password: ossrhPassword)
+                    repository(url: "https://paypalcentral.es.paypalcorp.com/nexus/content/repositories/releases/") {
+                        authentication(userName: paypalCentralUser, password: paypalCentralPassword)
                     }
 
-                    snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
-                        authentication(userName: ossrhUsername, password: ossrhPassword)
+                    snapshotRepository(url: "https://paypalcentral.es.paypalcorp.com/nexus/content/repositories/snapshots/") {
+                        authentication(userName: paypalCentralUser, password: paypalCentralPassword)
                     }
 
                     pom.project {
